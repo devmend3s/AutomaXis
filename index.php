@@ -21,6 +21,8 @@ switch ($action) {
 
     case 'home':
     default:
-        include 'view/home.php';
+        $controller = new ServiceController();
+        $controller->showHome();
         break;
+
 }

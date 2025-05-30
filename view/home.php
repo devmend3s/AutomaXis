@@ -37,25 +37,26 @@
     </div>
 
     <!-- Serviços -->
-    <div class="card">
+    <!-- Serviços -->
+  <div class="card">
       <h2>Serviços 👨‍🔧</h2>
       <table>
-        <tr><th>Tipo</th><th>Status</th></tr>
-        <tr>
-          <td><a href="#">---</a></td>
-          <td>---</td>
-        </tr>
-        <tr>
-          <td><a href="#">---</a></td>
-          <td>---</td>
-        </tr>
+        <tr><th>Tipo</th><th>Preço</th></tr>
+        <?php if (!empty($services)): ?>
+            <?php foreach ($services as $service): ?>
+              <tr>
+                <td><a href="#"><?= htmlspecialchars($service['name']) ?></a></td>
+                <td>R$ <?= number_format($service['price'], 2, ',', '.') ?></td>
+              </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr><td colspan="2">Nenhum serviço encontrado.</td></tr>
+        <?php endif; ?>
       </table>
       <div class="card-buttons">
         <a href="index.php?action=registerService"><button>Cadastrar</button></a>
         <button>Ver todos</button>
       </div>
-    </div>
   </div>
-
 </body>
 </html>

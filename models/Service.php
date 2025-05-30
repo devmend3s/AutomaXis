@@ -9,22 +9,17 @@ class Service {
         $this->conn = $db->getConnection();
     }
 
-    public function cadastrar($name, $description, $price, $customer_id = null) {
+    public function register($name, $description, $price) {
         try {
-            // Insere o serviço no banco
             $stmt = $this->conn->prepare("
-                INSERT INTO service (name, description, price, customer_id)
-                VALUES (:name, :description, :price, :customer_id)
+                INSERT INTO service (name, description, price)
+                VALUES (:name, :description, :price)
             ");
-
-            // Caso customer_id seja nulo, precisamos passar explicitamente NULL para o banco
-            $customer_id = $customer_id !== null ? $customer_id : null;
 
             $stmt->execute([
                 ':name' => $name,
                 ':description' => $description,
-                ':price' => $price,
-                ':customer_id' => $customer_id
+                ':price' => $price
             ]);
 
             return "Serviço cadastrado com sucesso!";
@@ -33,9 +28,10 @@ class Service {
         }
     }
 
-    public function listarUltimos($limite = 2) {
-        $stmt = $this->conn->prepare(" name, status FROM services ORDER BY id DESC LIMIT :limite");
-        $stmt->bindValue(':limite', (int)$limite, PDO::PARAM_INT);
+
+    public function showServicesHome($limit = 2) {
+        $stmt = $this->conn->prepare("SELECT name, price FROM service ORDER BY id DESC LIMIT :limit");
+        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

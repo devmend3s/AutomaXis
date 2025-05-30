@@ -23,35 +23,43 @@ class ServiceController {
 
     private function registerService() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Coleta os dados do formulário
             $name = $_POST['name'] ?? '';
             $description = $_POST['description'] ?? '';
-            $start_date = $_POST['start_date'] ?? '';
-            $end_date = $_POST['end_date'] ?? '';
+            $price = $_POST['price'] ?? '';
 
-            // Validação simples (você pode expandir depois)
-            if (empty($name) || empty($description)) {
+            // Validação simples
+            if (empty($name) || empty($description) || empty($price)) {
                 $_SESSION['message'] = "Preencha todos os campos obrigatórios.";
                 include 'view/registerService.php';
                 return;
             }
 
-            // Chama o método de cadastro
-            $result = $this->service->cadastrar($name, $description, $start_date, $end_date);
+            // Chama o método de cadastro com os dados corretos
+            $result = $this->service->register($name, $description, $price);
 
-            // Armazena feedback na sessão
+            // Exibe mensagem de sucesso ou erro
             $_SESSION['message'] = $result;
 
-            // Redireciona para home
+            // Redireciona para a home
             header('Location: ?action=home');
             exit;
         } else {
-            // Mostra o formulário se for GET
+            // Exibe o formulário de cadastro se for GET
             include 'view/registerService.php';
         }
     }
 
-    private function showHome() {
-        header('Location: ?action=home');
-        exit;
+
+    private function listService(){
+        $serviceModel = new Service();
+        return $serviceModel->showServicesHome(2);
     }
+
+    public function showHome() {
+        $services = $this->listService();
+        include 'view/home.php'; // Agora passa os serviços para a view
+    }
+
+
 }

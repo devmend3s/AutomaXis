@@ -102,8 +102,6 @@
             <input type="number" step="0.01" name="price" id="price" required>
         </div>
 
-        <input type="hidden" name="customer_id" value="1"> <!-- ajustar com session se necessário -->
-
         <div class="buttons">
             <button type="submit">Cadastrar</button>
             <button type="button" class="cancel" onclick="window.location.href='home.php'">Cancelar</button>
