@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  text-align: center;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 20px 0 10px;
+}
+
+.logo span:first-child {
+  color: #F22222;
+}
+
+.logo span:last-child {
+  color: #0477BF;
+}
+
+.welcome {
+  background-color: #0477BF;
+  color: #fff;
+  font-size: 28px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  width: 320px;
+  text-align: left;
+}
+
+.card h2 {
+  color: #0477BF;
+  border-bottom: 2px solid #0477BF;
+  padding-bottom: 5px;
+}
+
+table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+table th,
+table td {
+  text-align: left;
+  padding: 5px;
+}
+
+table th {
+  border-bottom: 2px solid black;
+}
+
+table td a {
+  color: black;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.card-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-buttons button {
+  background-color: #0477BF;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.top-icons {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.top-icons a {
+  color: #0477BF;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
