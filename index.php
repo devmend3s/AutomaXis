@@ -52,5 +52,5 @@ switch ($action) {
     default:
         $controller = new ServiceController();
         $controller->showHome();
-        break;
+        break
 }
