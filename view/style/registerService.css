@@ -1,0 +1,115 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 20px 0 10px;
+}
+
+.logo span:first-child {
+  color: #F22222;
+}
+
+.logo span:last-child {
+  color: #0477BF;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: #0288d1;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+tr:hover {
+  background-color: #e3f2fd;
+}
+
+.buttons {
+  margin: 20px 0;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #0288d1;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: #026ca1;
+}
+
+/* Para forms de cadastro, adiciona estilo básico */
+form {
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #444;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #0288d1;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}

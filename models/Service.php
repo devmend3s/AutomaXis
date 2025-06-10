@@ -9,25 +9,35 @@ class Service {
         $this->conn = $db->getConnection();
     }
 
-    public function register($name, $description, $price) {
+    public function create($name, $description, $price) {
         try {
             $stmt = $this->conn->prepare("
                 INSERT INTO service (name, description, price)
                 VALUES (:name, :description, :price)
             ");
 
-            $stmt->execute([
+            return $stmt->execute([
                 ':name' => $name,
                 ':description' => $description,
                 ':price' => $price
             ]);
-
-            return "Serviço cadastrado com sucesso!";
         } catch (PDOException $e) {
-            return "Erro ao cadastrar serviço: " . $e->getMessage();
+            // Você pode tratar o erro conforme preferir
+            return false;
         }
     }
 
+    public function getById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM service WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getAll() {
+        $stmt = $this->conn->prepare("SELECT * FROM service ORDER BY id DESC");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function showServicesHome($limit = 2) {
         $stmt = $this->conn->prepare("SELECT name, price FROM service ORDER BY id DESC LIMIT :limit");
@@ -35,6 +45,5 @@ class Service {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
 }
 ?>

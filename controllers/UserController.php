@@ -27,6 +27,7 @@ class UserController
                 break;
 
             case 'logout':
+                
                 session_destroy();
                 header("Location: ?action=login");
                 exit;
@@ -39,6 +40,7 @@ class UserController
 
     private function login()
     {
+        
         $message = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'] ?? '';
@@ -61,6 +63,7 @@ class UserController
 
     private function register()
     {
+        
         $message = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'] ?? '';
@@ -83,6 +86,7 @@ class UserController
 
     private function home()
     {
+        
         if (!isset($_SESSION['user'])) {
             header("Location: ?action=login");
             exit;

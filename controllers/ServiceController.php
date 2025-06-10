@@ -23,43 +23,40 @@ class ServiceController {
 
     private function registerService() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Coleta os dados do formulário
-            $name = $_POST['name'] ?? '';
-            $description = $_POST['description'] ?? '';
-            $price = $_POST['price'] ?? '';
+            $name = trim($_POST['name'] ?? '');
+            $description = trim($_POST['description'] ?? '');
+            $price = trim($_POST['price'] ?? '');
 
-            // Validação simples
-            if (empty($name) || empty($description) || empty($price)) {
+            if ($name === '' || $description === '' || $price === '') {
                 $_SESSION['message'] = "Preencha todos os campos obrigatórios.";
                 include 'view/registerService.php';
                 return;
             }
 
-            // Chama o método de cadastro com os dados corretos
-            $result = $this->service->register($name, $description, $price);
+            // Aqui chamamos create (método corrigido no model)
+            $success = $this->service->create($name, $description, $price);
 
-            // Exibe mensagem de sucesso ou erro
-            $_SESSION['message'] = $result;
+            if ($success) {
+                $_SESSION['message'] = "Serviço cadastrado com sucesso!";
+            } else {
+                $_SESSION['message'] = "Erro ao cadastrar serviço.";
+            }
 
-            // Redireciona para a home
-            header('Location: ?action=home');
+            // Redireciona para o formulário para evitar reenvio no refresh
+            header('Location: ?action=registerService');
             exit;
         } else {
-            // Exibe o formulário de cadastro se for GET
             include 'view/registerService.php';
         }
     }
 
-
-    private function listService(){
-        $serviceModel = new Service();
-        return $serviceModel->showServicesHome(2);
+    private function listService() {
+        return $this->service->showServicesHome(2);
     }
 
     public function showHome() {
         $services = $this->listService();
-        include 'view/home.php'; // Agora passa os serviços para a view
+        include 'view/home.php';
     }
-
-
 }
+?>
